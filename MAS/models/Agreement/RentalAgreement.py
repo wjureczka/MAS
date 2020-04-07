@@ -4,9 +4,10 @@ from abc import ABC, abstractmethod
 class RentalAgreement(ABC):
     _start_date = None
     _end_date = None
-    _rules_of_use = None
+    _rules_of_use = []
+    _max_rules_of_use = 30
 
-    def __init__(self, start_date, end_date, rules_of_use):
+    def __init__(self, start_date, end_date, rules_of_use=[]):
         self.start_date = start_date
         self.end_date = end_date
         self.rules_of_use = rules_of_use
@@ -33,7 +34,10 @@ class RentalAgreement(ABC):
 
     @rules_of_use.setter
     def rules_of_use(self, value):
-        self._rules_of_use = value
+        if len(value) <= 30:
+            self._rules_of_use = value
+        else:
+            raise Exception("Too much rules of use: {}".format(len(value)))
 
     def list_agreements(self):
         pass
