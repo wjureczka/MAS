@@ -1,5 +1,5 @@
 import os
-import pickle
+import dill
 
 from flask import Flask
 
@@ -19,15 +19,15 @@ fileName = 'dump'
 
 try:
     fileToOpen = open(fileName, 'rb')
-    data = pickle.load(fileToOpen)
+    data = dill.load(fileToOpen)
 
     fileToOpen.close()
 
-    print(data.comment)
+    print(data.extents)
 
     exit()
 except IOError:
-    print("Plik nie istnieje kurde")
+    print("File not found")
 
 opinion0 = Opinion("Heheszki0", "0")
 opinion1 = Opinion("Heheszki1", "1")
@@ -38,10 +38,9 @@ opinion5 = Opinion("Heheszki5", "5")
 
 file = open(fileName, 'wb')
 
-pickle.dump(opinion0, file)
+dill.dump(Opinion, file)
 
 file.close()
 
-print(opinion0.comment)
+print(Opinion.extents)
 
-# <MAS.models.Opinion.Opinion object at 0x7fb3b8afd978>

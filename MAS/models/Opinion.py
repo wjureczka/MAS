@@ -1,10 +1,14 @@
-class Opinion:
+from MAS.models.ObjectPlus import ObjectPlus
+
+
+class Opinion(ObjectPlus):
     _max_comment_length = 200
     _comment = None
     _rate = None
     _available_rates = ("0", "1", "2", "3", "4", "5")
 
     def __init__(self, comment, rate):
+        super().__init__()
         self.comment = comment
         self.rate = rate
 

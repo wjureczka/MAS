@@ -1,7 +1,7 @@
 class ObjectPlus:
 
-    _extents = []
+    extents = []
 
     def __init__(self):
-        pass
+        ObjectPlus.extents.append(self)
 
