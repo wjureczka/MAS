@@ -15,6 +15,3 @@ class Flat(RentalObject):
     @size.setter
     def size(self, value):
         self._size = value
-
-    def create_room(self):
-        pass

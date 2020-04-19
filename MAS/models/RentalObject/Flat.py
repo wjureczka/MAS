@@ -19,5 +19,5 @@ class Flat(RentalObject):
     def add_room(self, room):
         self._rooms.insert(room)
 
-    def create_flat(self):
+    def get_size(self):
         pass
