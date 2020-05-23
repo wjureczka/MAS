@@ -9,11 +9,6 @@ class Flat(RentalObject):
             rooms = []
         self.rooms = rooms
 
-    def __del__(self):
-        for room in self._rooms:
-            room.flat = None
-            del room
-
     @property
     def rooms(self):
         return self._rooms
