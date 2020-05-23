@@ -10,7 +10,6 @@ class Room(RentalObject):
         self.flat = flat
 
     def __del__(self):
-        print('Deleting room: ', self.description)
         if self.flat is not None:
             self.flat.delete_room_link(self)
 
@@ -35,6 +34,3 @@ class Room(RentalObject):
             value.add_room(self)
 
         self._flat = value
-
-    def delete_flat_link(self):
-        self.flat = None

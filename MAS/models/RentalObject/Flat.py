@@ -10,9 +10,9 @@ class Flat(RentalObject):
         self.rooms = rooms
 
     def __del__(self):
-        print('Deleting Flat: ', self.description)
         for room in self._rooms:
-            room.delete_flat_link()
+            room.flat = None
+            del room
 
     @property
     def rooms(self):
@@ -23,7 +23,6 @@ class Flat(RentalObject):
         self._rooms = value
 
     def add_room(self, room):
-        # print(room.description, room in self.rooms)
         if room is None or room in self.rooms:
             return
 

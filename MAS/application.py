@@ -83,6 +83,18 @@ for room in flat2.rooms:
     print('\t', room.description)
 print('-------------')
 
+print('Delete flat2')
 del flat2
 print(room3.description, room3.flat)
+print('-------------')
+
+print('Flat1:')
+for room in flat1.rooms:
+    print('\t', room.description)
+print('-------------')
+print('Room1', room1.description, room1.flat)
+print('Room2', room2.description, room2.flat)
+print('Room3', room3.description, room3.flat)
+print('Room4', room4.description, room4.flat)
+print('Room5', room5.description, room5.flat)
 # end kompozycja
