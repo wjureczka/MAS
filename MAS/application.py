@@ -12,35 +12,77 @@ from MAS.models.Opinion import Opinion
 #     return os.environ.get('DEBUG')
 
 # application.run()
+from MAS.models.RentalObject.Flat import Flat
+from MAS.models.RentalObject.Room import Room
+
+# start kompozycja
+flat1 = Flat("Flat1", "Flat1", "Flat1", "Flat1", "Flat1", "Flat1")
+flat2 = Flat("Flat2", "Flat2", "Flat2", "Flat2", "Flat2", "Flat2")
+
+room1 = Room("Room1", "Room1", "Room1", "Room1", "Room1", "Room1", "Room1")
+room2 = Room("Room2", "Room2", "Room2", "Room2", "Room2", "Room2", "Room2")
+room3 = Room("Room3", "Room3", "Room3", "Room3", "Room3", "Room3", "Room3")
+room4 = Room("Room4", "Room4", "Room4", "Room4", "Room4", "Room4", "Room4")
+room5 = Room("Room5", "Room5", "Room5", "Room5", "Room5", "Room5", "Room5")
+
+flat1.add_room(room1)
+flat1.add_room(room2)
+
+flat2.add_room(room3)
+flat2.add_room(room4)
+flat2.add_room(room5)
+
+print('Flat1:')
+for room in flat1.rooms:
+    print('\t', room.size)
+print('-------------')
+
+print('Flat2:')
+for room in flat2.rooms:
+    print('\t', room.size)
+print('-------------')
 
 
-fileToOpen = None
-fileName = 'dump'
+print('Delete room1 from flat1')
+room1.flat = None
+print('-------------')
 
-try:
-    fileToOpen = open(fileName, 'rb')
-    data = dill.load(fileToOpen)
+print('Flat1:')
+for room in flat1.rooms:
+    print('\t', room.description)
+print('-------------')
 
-    fileToOpen.close()
+print('Change flat for room2 from flat1 to flat2')
+room2.flat = flat2
+print('-------------')
+print('Change flat for room4 from flat2 to flat1')
+room4.flat = flat1
+print('-------------')
 
-    print(data.extents)
+print('Flat1:')
+for room in flat1.rooms:
+    print('\t', room.description)
+print('-------------')
 
-    exit()
-except IOError:
-    print("File not found")
+print('Flat2:')
+for room in flat2.rooms:
+    print('\t', room.description)
+print('-------------')
 
-opinion0 = Opinion("Heheszki0", "0")
-opinion1 = Opinion("Heheszki1", "1")
-opinion2 = Opinion("Heheszki2", "2")
-opinion3 = Opinion("Heheszki3", "3")
-opinion4 = Opinion("Heheszki4", "4")
-opinion5 = Opinion("Heheszki5", "5")
+print('Change flat for room5 from flat2 to None')
+room5.flat = None
+print('-------------')
 
-file = open(fileName, 'wb')
+print('Flat1:')
+for room in flat1.rooms:
+    print('\t', room.description)
+print('-------------')
 
-dill.dump(Opinion, file)
+print('Flat2:')
+for room in flat2.rooms:
+    print('\t', room.description)
+print('-------------')
 
-file.close()
-
-print(Opinion.extents)
-
+del flat2
+print(room3.description, room3.flat)
+# end kompozycja
