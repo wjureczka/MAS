@@ -3,7 +3,6 @@ import dill
 
 from flask import Flask
 
-from MAS.models.Opinion import Opinion
 
 # application = Flask(__name__)
 #
@@ -12,8 +11,36 @@ from MAS.models.Opinion import Opinion
 #     return os.environ.get('DEBUG')
 
 # application.run()
+from MAS.models.Group import Group
+from MAS.models.Opinion import Opinion
+from MAS.models.User.Tenant import Tenant
 from MAS.models.RentalObject.Flat import Flat
 from MAS.models.RentalObject.Room import Room
+
+
+# start zwykła asocjacja
+print('---------- zwykła asocjacja')
+tenant = Tenant("Name", "Surname", "Email")
+opinion = Opinion(tenant, "Opinion", "0")
+
+for opinion in tenant.sent_rental_object_opinions:
+    print(opinion.comment, opinion.rate)
+
+print(opinion.author.name, opinion.author.surname)
+print('--------------------------')
+# koniec zwykła asocjacja
+
+# start asocjacja kwalifikowana
+print('---------- asocjacja kwalifikowana')
+
+tenant_with_group = Tenant("Tenant", "With", "Group")
+group = Group(1000, [], 1, 50)
+group.invite_to_group(tenant_with_group)
+
+print(tenant_with_group.groups_belonging, tenant_with_group.groups_belonging[0])
+print(group.users[tenant_with_group.pesel], group.users[tenant_with_group.pesel].name)
+print('--------------------------')
+# koniec asocjacja kwalifikowana
 
 # start kompozycja
 flat1 = Flat("Flat1", "Flat1", "Flat1", "Flat1", "Flat1", "Flat1")

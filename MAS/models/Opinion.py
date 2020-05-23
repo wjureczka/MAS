@@ -6,11 +6,22 @@ class Opinion(ObjectPlus):
     _comment = None
     _rate = None
     _available_rates = ("0", "1", "2", "3", "4", "5")
+    _author = None
 
-    def __init__(self, comment, rate):
+    def __init__(self, author, comment, rate):
         super().__init__()
+        self.author = author
         self.comment = comment
         self.rate = rate
+
+    @property
+    def author(self):
+        return self._author
+
+    @author.setter
+    def author(self, new_author):
+        self._author = new_author
+        self.author.add_object_opinion(self);
 
     @property
     def comment(self):

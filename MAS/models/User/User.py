@@ -1,3 +1,5 @@
+import uuid
+
 from MAS.models.User.UserAbstract import UserAbstract
 
 
@@ -6,11 +8,21 @@ class User(UserAbstract):
     _name = None
     _surname = None
     _email = None
+    _pesel = None
 
     def __init__(self, name, surname, email):
         self.name = name
         self.surname = surname
         self.email = email
+        self.pesel = uuid.uuid4()
+
+    @property
+    def pesel(self):
+        return self._pesel
+
+    @pesel.setter
+    def pesel(self, new_pesel):
+        self._pesel = new_pesel
 
     @property
     def name(self):
