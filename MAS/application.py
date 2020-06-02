@@ -124,24 +124,25 @@ for room in flat1.rooms:
     print('\t', room.description)
 print('-------------')
 try:
-    print('Room1', room1.description, room1.flat)
+    print(room1.description, room1.flat)
 except Exception as exception:
     print('Room1 already deleted')
 try:
-    print('Room2', room2.description, room2.flat)
+    print(room2.description, room2.flat)
 except Exception as exception:
     print('Room2 already deleted')
 try:
-    print('Room3', room3.description, room3.flat)
+    print(room3.description, room3.flat)
 except Exception as exception:
     print('Room3 already deleted')
 try:
-    print('Room4', room4.description, room4.flat)
+    print(room4.description, room4.flat)
 except Exception as exception:
     print('Room1 already deleted')
 try:
-    print('Room5', room5.description, room5.flat)
+    print(room5.description, room5.flat)
 except Exception as exception:
     print('Room5 already deleted')
+print('------------------------------------------')
 
 # end kompozycja
