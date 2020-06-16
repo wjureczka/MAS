@@ -1,11 +1,15 @@
 from flask import jsonify, request
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from MAS.application import application, db
 from MAS.models.Group import Group
 
 
 @application.route('/groups', methods=['GET'])
+@jwt_required
 def get_groups():
+    current_user = get_jwt_identity()
+
     users = Group.query.all()
 
     return jsonify(users)

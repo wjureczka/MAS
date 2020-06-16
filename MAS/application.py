@@ -20,3 +20,4 @@ from MAS.models.User_Group import User_Group
 
 from MAS.controllers.UserController import *
 from MAS.controllers.GroupController import *
+from MAS.controllers.AuthController import *
