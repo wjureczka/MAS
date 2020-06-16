@@ -16,8 +16,4 @@ class Group(db.Model):
     preferred_size: int = db.Column(db.Integer)
     budget: int = db.Column(db.Integer)
 
-    def invite_to_group(self, user):
-        print(self.users)
-        self.users[user.pesel] = user
-        user.assign_to_group(self)
 

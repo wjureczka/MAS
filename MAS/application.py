@@ -15,4 +15,5 @@ from MAS.models.Users.LandLord import LandLord
 from MAS.models.Group import Group
 from MAS.models.User_Group import User_Group
 
-from MAS.controllers.UserController import GetUsers
+from MAS.controllers.UserController import *
+from MAS.controllers.GroupController import *
