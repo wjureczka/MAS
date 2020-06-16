@@ -1,4 +1,3 @@
-from MAS.models.ObjectPlus import ObjectPlus
 
 
 class RentalObject:

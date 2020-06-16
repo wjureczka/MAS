@@ -1,11 +1,20 @@
-version: '3'
+version: '3.1'
+
 services:
-  database:
-    image: 'postgres'
-      - database.env
-    volumes:
-      - database-data:/var/lib/postgresql/data/
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - 5432:5432
 
-
-volumes:
-  database-data
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: MAS
+      PGADMIN_DEFAULT_PASSWORD: MAS
+    ports:
+      - 5050:80

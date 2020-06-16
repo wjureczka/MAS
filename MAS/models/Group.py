@@ -1,20 +1,20 @@
-class Group:
-    _users = None
-    _preferred_locations = None
-    _preferred_room_quantity = None
-    _preferred_size = None
-    _budget = None
+from dataclasses import dataclass
 
-    def __init__(self, budget, preferred_locations, preferred_room_quantity, preferred_size):
-        self._users = {}
-        self._budget = budget
-        self._preferred_locations = preferred_locations
-        self._preferred_room_quantity = preferred_room_quantity
-        self._preferred_size = preferred_size
+from MAS.application import db
+from MAS.models.User_Group import User_Group
 
-    @property
-    def users(self):
-        return self._users
+@dataclass
+class Group(db.Model):
+    __tablename__ = 'group'
+    __table_args__ = {'extend_existing': True}
+
+    users = db.relationship('Tenant', secondary=User_Group, backref='Group')
+
+    id: int = db.Column(db.Integer, primary_key=True)
+    preferred_locations: str = db.Column(db.String(100))
+    preferred_room_quantity: int = db.Column(db.Integer)
+    preferred_size: int = db.Column(db.Integer)
+    budget: int = db.Column(db.Integer)
 
     def invite_to_group(self, user):
         print(self.users)

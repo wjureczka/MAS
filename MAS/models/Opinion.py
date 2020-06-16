@@ -1,7 +1,4 @@
-from MAS.models.ObjectPlus import ObjectPlus
-
-
-class Opinion(ObjectPlus):
+class Opinion:
     _max_comment_length = 200
     _comment = None
     _rate = None
