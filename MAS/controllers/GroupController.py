@@ -5,25 +5,30 @@ from MAS.models.Group import Group
 
 
 @application.route('/groups', methods=['GET'])
-def GetGroups():
+def get_groups():
     users = Group.query.all()
 
     return jsonify(users)
 
 
 @application.route('/groups/<int:group_id>', methods=['GET'])
-def GetGroup(group_id):
+def get_group(group_id):
     user = Group.query.get(group_id)
 
     return jsonify(user)
 
 
 @application.route('/groups', methods=['POST'])
-def PostGroup():
+def post_group():
     new_group_data = request.json
 
     try:
-        new_group = Group()
+        new_group = Group(
+            preferred_size=new_group_data['preferred_size'],
+            preferred_locations=new_group_data['preferred_locations'],
+            preferred_room_quantity=new_group_data['preferred_room_quantity'],
+            budget=new_group_data['budget']
+        )
 
         db.session.add(new_group)
         db.session.commit()
@@ -34,9 +39,10 @@ def PostGroup():
 
 
 @application.route('/groups/<int:group_id>', methods=['DELETE'])
-def DeleteGroup(group_id: int):
+def delete_group(group_id: int):
     group_to_delete = Group.query.get(group_id)
 
     db.session.delete(group_to_delete)
+    db.session.commit()
 
     return ('', 204)

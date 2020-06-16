@@ -18,15 +18,21 @@ class User(db.Model):
     name: str = db.Column(db.String(50), nullable=False)
     surname: str = db.Column(db.String(50), nullable=False)
     email: str = db.Column(db.String(50), unique=True, nullable=False)
+    password: str = db.Column(db.String(100), nullable=False)
 
     @validates('email')
     def validate_email(self, key, email):
         assert '@' in email, "Not valid email: email should contain '@'"
         return email
 
+    @validates('password')
+    def validate_password(self, key, password):
+        assert password is not None, "Password can not be empty"
+        return password
+
     @validates('pesel')
     def validate_pesel(self, key, pesel):
-        assert len(pesel) is 11, "Bad pesel's length"
+        assert len(pesel) == 11, "Bad pesel's length"
         return pesel
 
     @validates('name')
