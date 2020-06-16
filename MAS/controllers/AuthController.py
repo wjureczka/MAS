@@ -1,7 +1,7 @@
 from flask import jsonify, make_response
 from flask_jwt_extended import create_access_token
 
-from MAS.application import application, request, db
+from MAS.application import application, request, db, jwt
 from MAS.models.Users.User import User
 
 
@@ -26,7 +26,8 @@ def login():
     if login_user.password != password:
         return "Bad username or password", 401
 
-    access_token = create_access_token(identity=email)
+    identity = { 'id': login_user.id, 'name': login_user.name, 'email': login_user.email }
+    access_token = create_access_token(identity=identity)
 
     response = make_response(jsonify(access_token=access_token))
     response.set_cookie('access_token', access_token, httponly=True)
