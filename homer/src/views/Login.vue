@@ -1,11 +1,11 @@
 <template>
 
-  <div>
-    <h1>
+  <div class="login">
+    <h1 class="login__title">
       Login into your account
     </h1>
 
-    <form>
+    <form class="login__form form">
 
       <label for="email">Email</label>
       <input id="email" type="email">
@@ -17,3 +17,20 @@
     </form>
   </div>
 </template>
+
+<style lang="scss">
+  .login {
+    width: 100%;
+
+    &__title {
+
+    }
+
+    &__form {
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      max-width: 320px;
+    }
+  }
+</style>
