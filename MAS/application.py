@@ -21,6 +21,9 @@ from MAS.models.RentalObjects.RentalObject import RentalObject
 from MAS.models.RentalObjects.Flat import Flat
 from MAS.models.RentalObjects.Room import Room
 from MAS.models.Opinion import Opinion
+from MAS.models.Agreements.RentalAgreement import RentalAgreement
+from MAS.models.Agreements.OccasionalAgreement import OccasionalAgreement
+from MAS.models.Agreements.CommonAgreement import CommonAgreement
 
 from MAS.controllers.UserController import *
 from MAS.controllers.GroupController import *
