@@ -24,6 +24,7 @@ from MAS.models.Opinion import Opinion
 from MAS.models.Agreements.RentalAgreement import RentalAgreement
 from MAS.models.Agreements.OccasionalAgreement import OccasionalAgreement
 from MAS.models.Agreements.CommonAgreement import CommonAgreement
+from MAS.models.RentBill import RentBill
 
 from MAS.controllers.UserController import *
 from MAS.controllers.GroupController import *
