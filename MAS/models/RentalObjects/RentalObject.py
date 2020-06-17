@@ -17,3 +17,4 @@ class RentalObject(db.Model):
     equipment: str = db.Column(db.String(200))
     address: str = db.Column(db.String)
     price: float = db.Column(db.Float)
+    opinions: list = db.relationship('Opinion', back_populates='rental_object')
