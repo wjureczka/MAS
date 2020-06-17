@@ -13,5 +13,6 @@ class RentalAgreement(db.Model):
     end_date = db.Column(db.DATE)
     rules_of_use = db.Column(db.String(300))
 
-    rental_objcet_id = db.Column(db.Integer, db.ForeignKey('rental_object.id'))
+    rental_object_id = db.Column(db.Integer, db.ForeignKey('rental_object.id'))
     rental_object = db.relationship('RentalObject')
+    bills: list = db.relationship('RentBill', back_populates='rental_agreement')
