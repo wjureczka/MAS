@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -17,6 +17,10 @@ from MAS.models.Users.Tenant import Tenant
 from MAS.models.Users.LandLord import LandLord
 from MAS.models.Group import Group
 from MAS.models.User_Group import User_Group
+from MAS.models.RentalObjects.RentalObject import RentalObject
+from MAS.models.RentalObjects.Flat import Flat
+from MAS.models.RentalObjects.Room import Room
+from MAS.models.Opinion import Opinion
 
 from MAS.controllers.UserController import *
 from MAS.controllers.GroupController import *

@@ -1,15 +1,17 @@
-class Opinion:
-    _max_comment_length = 200
-    _comment = None
-    _rate = None
-    _available_rates = ("0", "1", "2", "3", "4", "5")
-    _author = None
+from MAS.application import db
 
-    def __init__(self, author, comment, rate):
-        super().__init__()
-        self.author = author
-        self.comment = comment
-        self.rate = rate
+
+class Opinion(db.Model):
+    __tablename__ = 'opinion'
+
+    _available_rates = ("0", "1", "2", "3", "4", "5")
+
+    comment: str = db.Column(db.String(200))
+    rate: float = db.Column(db.Float)
+    author_id = db.Column(db.Integer, db.ForeignKey('tenant.id'), primary_key=True, nullable=False)
+    author = db.relationship("Tenant", back_populates='opinions')
+    rental_object = db.relationship("RentalObject", back_populates='opinions')
+    rental_object_id = db.Column(db.Integer, db.ForeignKey('rental_object.id'), primary_key=True, nullable=False)
 
     @property
     def author(self):

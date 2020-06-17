@@ -11,3 +11,4 @@ class Tenant(User):
 
     id: int = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True, nullable=False)
     groups: list = db.relationship('Group', secondary=User_Group, backref='Tenant')
+    opinions: list = db.relationship('Opinion', back_populates='author')
