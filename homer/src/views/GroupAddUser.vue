@@ -16,6 +16,7 @@
 </template>
 <script>
 import { postNewUserToGroup } from '@/api'
+import router from '@/router'
 
 const handleOnSubmit = async (event, id) => {
   event.preventDefault()
@@ -24,7 +25,7 @@ const handleOnSubmit = async (event, id) => {
 
   await postNewUserToGroup({ groupId: id, email: email.value })
     .then(() => {
-      alert('succ')
+      router.push(`/groups/${id}/user-added-to-group`)
     })
     .catch(() => {
       alert('fail')
