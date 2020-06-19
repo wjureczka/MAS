@@ -14,11 +14,11 @@ class User(db.Model):
     }
 
     id: int = db.Column(db.Integer, primary_key=True, nullable=False)
-    pesel: str = db.Column(db.String(11), unique=True, nullable=False)
+    pesel = db.Column(db.String(11), unique=True, nullable=False)
     name: str = db.Column(db.String(50), nullable=False)
-    surname: str = db.Column(db.String(50), nullable=False)
+    surname = db.Column(db.String(50), nullable=False)
     email: str = db.Column(db.String(50), unique=True, nullable=False)
-    password: str = db.Column(db.String(100), nullable=False)
+    password = db.Column(db.String(100), nullable=False)
 
     @validates('email')
     def validate_email(self, key, email):

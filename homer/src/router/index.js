@@ -20,6 +20,26 @@ const routes = [
     beforeEnter: authGuard
   },
   {
+    path: '/groups/new-group-form',
+    name: 'New group form',
+    component: () => import(/* webpackChunkName: "about" */ '../views/NewGroupForm.vue'),
+    beforeEnter: authGuard
+  },
+  {
+    path: '/groups/:id/group-created',
+    name: 'Group created',
+    props: true,
+    component: () => import(/* webpackChunkName: "about" */ '../views/GroupCreated.vue'),
+    beforeEnter: authGuard
+  },
+  {
+    path: '/groups/:id/add-user',
+    name: 'Add user to group',
+    props: true,
+    component: () => import(/* webpackChunkName: "about" */ '../views/GroupAddUser.vue'),
+    beforeEnter: authGuard
+  },
+  {
     path: '*',
     name: 'Not found',
     component: () => import(/* webpackChunkName: "about" */ '../views/NotFound.vue')

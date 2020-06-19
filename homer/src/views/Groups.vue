@@ -4,13 +4,15 @@
 
     <ul class="groups__list">
 
-      <li class="groups__list-element">
-
+      <li class="groups__list-element" v-for="group in groups" :key="group.id">
+        <Group v-bind:group="group"/>
       </li>
 
       <li class="groups__list-element">
         <div class="groups__add-new">
-          <span class="mdi mdi-plus"/>
+          <router-link to="/groups/new-group-form">
+            <span class="mdi mdi-plus"/>
+          </router-link>
         </div>
       </li>
 
@@ -21,9 +23,11 @@
 <script>
 
 import { getGroups } from '@/api'
+import Group from '@/components/Group'
 
 export default {
   name: 'Groups',
+  components: { Group },
   data: function () {
     return {
       groups: []
@@ -31,7 +35,7 @@ export default {
   },
   async beforeCreate () {
     await getGroups()
-      .then((data) => {
+      .then(({ data }) => {
         this.groups = data
         return data
       })
@@ -68,8 +72,9 @@ export default {
     }
 
     &__list-element {
+      flex: 1 1 100%;
       margin: 10px;
-      width: 22%;
+      max-width: 30%;
       position: relative;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 

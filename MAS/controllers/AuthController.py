@@ -1,8 +1,8 @@
 from flask import jsonify, make_response
 from flask_cors import cross_origin
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required
 
-from MAS.application import application, request, jwt_required
+from MAS.application import application, request
 from MAS.models.Users.User import User
 
 
@@ -28,13 +28,14 @@ def login():
     if login_user.password != password:
         return "Bad username or password", 401
 
-    identity = { 'id': login_user.id, 'name': login_user.name, 'email': login_user.email }
+    identity = {'id': login_user.id, 'name': login_user.name, 'email': login_user.email}
     access_token = create_access_token(identity=identity)
 
     response = make_response(jsonify(access_token=access_token))
     response.set_cookie('access_token_cookie', access_token, httponly=True)
 
     return response
+
 
 @application.route('/is-logged-in', methods=['GET'])
 @jwt_required

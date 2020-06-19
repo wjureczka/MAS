@@ -25,11 +25,10 @@ import router from '@/router'
 const handleOnSubmit = async (event) => {
   event.preventDefault()
 
-  const form = event.target.elements
+  const { email, password } = event.target.elements
 
-  await login({ email: form.email.value, password: form.password.value })
+  await login({ email: email.value, password: password.value })
     .then(() => {
-      alert('Success')
       router.push('/groups')
     })
     .catch(() => {

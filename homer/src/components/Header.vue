@@ -22,7 +22,7 @@
       </ul>
 
       <div class="nav__user user">
-        <img class="user__avatar" src="https://api.adorable.io/avatars/285/abott@adorable.pngCopy to Clipboard"/>
+        <img class="user__avatar" src="https://api.adorable.io/avatars/285/abott@adorable.png"/>
 
         <a class="user__name" href="#">Hej, Ziomek!</a>
 
