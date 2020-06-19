@@ -1,11 +1,13 @@
 from flask import jsonify, make_response
+from flask_cors import cross_origin
 from flask_jwt_extended import create_access_token
 
-from MAS.application import application, request, db, jwt
+from MAS.application import application, request, jwt_required
 from MAS.models.Users.User import User
 
 
 @application.route('/login', methods=['POST'])
+@cross_origin(supports_credentials=True)
 def login():
     if not request.is_json:
         return "Missing JSON in request", 400
@@ -30,6 +32,12 @@ def login():
     access_token = create_access_token(identity=identity)
 
     response = make_response(jsonify(access_token=access_token))
-    response.set_cookie('access_token', access_token, httponly=True)
+    response.set_cookie('access_token_cookie', access_token, httponly=True)
 
     return response
+
+@application.route('/is-logged-in', methods=['GET'])
+@jwt_required
+@cross_origin(supports_credentials=True)
+def is_logged_in():
+    return "", 200

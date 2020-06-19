@@ -3,6 +3,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from MAS.application import application, db
 from MAS.models.Group import Group
+from MAS.models.User_Group import User_Group
 
 
 @application.route('/groups', methods=['GET'])
@@ -10,9 +11,11 @@ from MAS.models.Group import Group
 def get_groups():
     current_user = get_jwt_identity()
 
-    users = Group.query.all()
+    current_user_id = current_user['id']
 
-    return jsonify(users)
+    groups = Group.query.join(User_Group).filter_by(tenant_id=current_user_id).all()
+
+    return jsonify(groups)
 
 
 @application.route('/groups/<int:group_id>', methods=['GET'])
